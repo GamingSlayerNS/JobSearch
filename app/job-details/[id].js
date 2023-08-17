@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react';
 import { Company, JobAbout, JobFooter, JobTabs, ScreenHeaderBtn, Specifics } from '../../components';
 import { COLORS, icons, SIZES } from '../../constants';
 import useFetch from '../../hook/useFetch';
-import About from '../../components/jobdetails/about/About';
 
 const tabs = ["About", "Qualifications", "Responsabilities"];
 
@@ -13,7 +12,7 @@ const JobDetails = () => {
     const params = useSearchParams();
     const router = useRouter();
 
-    const { data, isLoading, error, refetch } = useFetch('job-details', {job_id: params.id});
+    const { data, isLoading, error, refetch } = useFetch('job-details', { job_id: params.id });
     
     const [activeTab, setActiveTab] = useState(tabs[0]);
     const [refreshing, setRefreshing] = useState(false);
@@ -31,14 +30,18 @@ const JobDetails = () => {
                     points={data[0].job_highlights?.Qualifications ?? ['N/A']}
                 />
             case "About":
-                return <About
+                return <JobAbout
                     info={data[0].job_description ?? "No data provided"}
                 />
             case "Responsabilities":
+                return <Specifics
+                    title='Responsabilities'
+                    points={data[0].job_highlights?.Responsabilities ?? ['N/A']}
+                />
         
             default: break;
         }
-    }
+    };
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.lightWhite}}>
@@ -56,6 +59,7 @@ const JobDetails = () => {
                     headerTitle: ""
                 }}
             />
+
             <>
                 <ScrollView showsVerticalScrollIndicator={false} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                     {isLoading ? (
@@ -83,6 +87,8 @@ const JobDetails = () => {
                         </View>
                     )}
                 </ScrollView>
+
+                <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
             </>
         </SafeAreaView>
     )
