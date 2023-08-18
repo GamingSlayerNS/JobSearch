@@ -1,6 +1,7 @@
 # JobSearch job finder app
 
 Try the app on android:
+
 ![JobSearch QR](https://github.com/GamingSlayerNS/JobSearch/assets/63477484/6ae1aaac-84fb-4181-b4b7-ef27e4c83d9c)
 ![JobSearch Example 1](https://github.com/GamingSlayerNS/JobSearch/assets/63477484/daa4be63-78f6-41d7-b664-f5125ed2042c)
 ![JobSearch Example 2](https://github.com/GamingSlayerNS/JobSearch/assets/63477484/22f2d2b2-f8f0-4598-b5a0-2fe517228cf3)
